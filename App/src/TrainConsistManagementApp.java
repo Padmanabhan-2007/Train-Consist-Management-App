@@ -1,6 +1,7 @@
 package trainconsistmanagementapp;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 // 🔹 Bogie class
 class Bogie {
@@ -14,7 +15,7 @@ class Bogie {
 
     @Override
     public String toString() {
-        return name + " (Capacity: " + capacity + ")";
+        return name + " (" + capacity + ")";
     }
 }
 
@@ -31,17 +32,26 @@ public class TrainConsistManagementApp {
 
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 54));
+        bogies.add(new Bogie("Sleeper", 70));   // duplicate type
         bogies.add(new Bogie("First Class", 24));
+        bogies.add(new Bogie("AC Chair", 56));  // duplicate type
 
-        System.out.println("\n[UC7] Before Sorting:");
+        System.out.println("\n[UC9] Original Bogie List:");
         System.out.println(bogies);
 
-        // 🔹 Sort using Comparator (ascending capacity)
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        // 🔹 Group by bogie type (name)
+        Map<String, List<Bogie>> groupedBogies =
+                bogies.stream()
+                        .collect(Collectors.groupingBy(b -> b.name));
 
-        System.out.println("\nSorted Bogies by Capacity:");
-        for (Bogie b : bogies) {
-            System.out.println(b);
+        // 🔹 Display grouped result
+        System.out.println("\nGrouped Bogies by Type:");
+
+        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
+            System.out.println("\nType: " + entry.getKey());
+            for (Bogie b : entry.getValue()) {
+                System.out.println("  " + b);
+            }
         }
 
         System.out.println("\nProgram completed successfully.");
