@@ -1,6 +1,6 @@
 package trainconsistmanagementapp;
 
-import java.util.LinkedList;
+import java.util.*;
 
 public class TrainConsistManagementApp {
 
@@ -10,34 +10,85 @@ public class TrainConsistManagementApp {
         System.out.println("   Train Consist Management App       ");
         System.out.println("======================================");
 
-        // 🔹 UC4 – LinkedList for ordered train consist
-        LinkedList<String> train = new LinkedList<>();
+        // =========================
+        // 🔹 UC1: Initialize Train
+        // =========================
+        List<String> bogies = new ArrayList<>();
 
-        // Add bogies
-        train.add("Engine");
-        train.add("Sleeper");
-        train.add("AC");
-        train.add("Cargo");
-        train.add("Guard");
+        System.out.println("\n[UC1] Train consist initialized.");
+        System.out.println("Initial bogie count: " + bogies.size());
 
-        System.out.println("\nInitial Train Consist:");
-        System.out.println(train);
+        // =========================
+        // 🔹 UC2: ArrayList Operations
+        // =========================
+        bogies.add("Sleeper");
+        bogies.add("AC Chair");
+        bogies.add("First Class");
 
-        // Insert Pantry Car at position 2
-        train.add(2, "Pantry");
+        System.out.println("\n[UC2] After adding bogies:");
+        System.out.println(bogies);
 
-        System.out.println("\nAfter adding Pantry at position 2:");
-        System.out.println(train);
+        bogies.remove("AC Chair");
 
-        // Remove first and last bogie
-        train.removeFirst();
-        train.removeLast();
+        System.out.println("After removing AC Chair:");
+        System.out.println(bogies);
 
-        System.out.println("\nAfter removing first and last bogie:");
-        System.out.println(train);
+        if (bogies.contains("Sleeper")) {
+            System.out.println("Sleeper bogie exists.");
+        }
 
-        // Final output
-        System.out.println("\nFinal Ordered Train Consist:");
-        System.out.println(train);
+        // =========================
+        // 🔹 UC3: HashSet (Unique IDs)
+        // =========================
+        Set<String> bogieIds = new HashSet<>();
+
+        bogieIds.add("BG101");
+        bogieIds.add("BG102");
+        bogieIds.add("BG103");
+        bogieIds.add("BG101"); // duplicate
+
+        System.out.println("\n[UC3] Unique Bogie IDs:");
+        System.out.println(bogieIds);
+
+        // =========================
+        // 🔹 UC4: LinkedList (Ordered)
+        // =========================
+        LinkedList<String> trainList = new LinkedList<>();
+
+        trainList.add("Engine");
+        trainList.add("Sleeper");
+        trainList.add("AC");
+        trainList.add("Cargo");
+        trainList.add("Guard");
+
+        System.out.println("\n[UC4] Initial Train:");
+        System.out.println(trainList);
+
+        trainList.add(2, "Pantry");
+
+        System.out.println("After adding Pantry:");
+        System.out.println(trainList);
+
+        trainList.removeFirst();
+        trainList.removeLast();
+
+        System.out.println("After removing first & last:");
+        System.out.println(trainList);
+
+        // =========================
+        // 🔹 UC5: LinkedHashSet (Order + Unique)
+        // =========================
+        LinkedHashSet<String> trainSet = new LinkedHashSet<>();
+
+        trainSet.add("Engine");
+        trainSet.add("Sleeper");
+        trainSet.add("Cargo");
+        trainSet.add("Guard");
+        trainSet.add("Sleeper"); // duplicate
+
+        System.out.println("\n[UC5] Final Train Formation:");
+        System.out.println(trainSet);
+
+        System.out.println("\nProgram completed successfully.");
     }
 }
