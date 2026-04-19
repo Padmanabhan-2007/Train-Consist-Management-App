@@ -1,7 +1,9 @@
 package trainconsistmanagementapp;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TrainConsistManagementApp {
 
@@ -11,37 +13,30 @@ public class TrainConsistManagementApp {
         System.out.println("   Train Consist Management App       ");
         System.out.println("======================================");
 
-        // Initialize list
+        // 🔹 UC2 (existing - optional to keep)
         List<String> bogies = new ArrayList<>();
-
-        System.out.println("\nTrain consist initialized.");
-        System.out.println("Initial bogie count: " + bogies.size());
-
-        // 🔹 Add passenger bogies
         bogies.add("Sleeper");
         bogies.add("AC Chair");
         bogies.add("First Class");
 
-        System.out.println("\nAfter adding bogies:");
+        System.out.println("\nPassenger Bogies:");
         System.out.println(bogies);
 
-        // 🔹 Remove a bogie
-        bogies.remove("AC Chair");
+        // 🔹 UC3 – Unique Bogie IDs using HashSet
+        Set<String> bogieIds = new HashSet<>();
 
-        System.out.println("\nAfter removing AC Chair:");
-        System.out.println(bogies);
+        System.out.println("\nAdding Bogie IDs (including duplicates):");
 
-        // 🔹 Check existence
-        if (bogies.contains("Sleeper")) {
-            System.out.println("\nSleeper bogie exists in the train.");
-        } else {
-            System.out.println("\nSleeper bogie not found.");
-        }
+        bogieIds.add("BG101");
+        bogieIds.add("BG102");
+        bogieIds.add("BG103");
+        bogieIds.add("BG101"); // duplicate
+        bogieIds.add("BG102"); // duplicate
 
-        // Final state
-        System.out.println("\nFinal Train Consist:");
-        System.out.println(bogies);
+        // Display result
+        System.out.println("\nUnique Bogie IDs:");
+        System.out.println(bogieIds);
 
-        System.out.println("\nProgram continues...");
+        System.out.println("\nTotal Unique Bogies: " + bogieIds.size());
     }
 }
