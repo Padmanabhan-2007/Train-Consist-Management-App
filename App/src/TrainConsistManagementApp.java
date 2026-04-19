@@ -1,7 +1,6 @@
 package trainconsistmanagementapp;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 // 🔹 Bogie class
 class Bogie {
@@ -27,32 +26,24 @@ public class TrainConsistManagementApp {
         System.out.println("   Train Consist Management App       ");
         System.out.println("======================================");
 
-        // 🔹 Create list of bogies
+        // 🔹 Create bogie list (reuse from UC7/UC8/UC9)
         List<Bogie> bogies = new ArrayList<>();
 
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 54));
-        bogies.add(new Bogie("Sleeper", 70));   // duplicate type
         bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("AC Chair", 56));  // duplicate type
+        bogies.add(new Bogie("Sleeper", 70)); // extra
 
-        System.out.println("\n[UC9] Original Bogie List:");
+        System.out.println("\n[UC10] Bogie List:");
         System.out.println(bogies);
 
-        // 🔹 Group by bogie type (name)
-        Map<String, List<Bogie>> groupedBogies =
-                bogies.stream()
-                        .collect(Collectors.groupingBy(b -> b.name));
+        // 🔹 Aggregation using Stream
+        int totalSeats = bogies.stream()
+                .map(b -> b.capacity)        // extract capacity
+                .reduce(0, Integer::sum);    // sum all values
 
-        // 🔹 Display grouped result
-        System.out.println("\nGrouped Bogies by Type:");
-
-        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
-            System.out.println("\nType: " + entry.getKey());
-            for (Bogie b : entry.getValue()) {
-                System.out.println("  " + b);
-            }
-        }
+        // 🔹 Display result
+        System.out.println("\nTotal Seating Capacity: " + totalSeats);
 
         System.out.println("\nProgram completed successfully.");
     }
